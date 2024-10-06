@@ -1,0 +1,23 @@
+﻿{
+  "appName": "Empiria Workflow Definition and Execution Services Tests suite",
+  "description": "Tests suite for workflow definition and execution services.",
+  "version": "4.0",
+  "date": "2024-10-06",
+  "settings": [
+    {
+      "type": "",
+      "key": "ApplicationKey",
+      "value": "{{APPLICATION-KEY}}"
+    },
+    {
+      "type": "",
+      "key": "GlobalConfigurationFile",
+      "value": "{{GLOBAL-CONFIGURATION-FILE}}"
+    },
+    {
+      "type": "Tests",
+      "key": "SessionToken",
+      "value": "{{TESTING-SESSION-TOKEN}}"
+    }
+  ]
+}
