@@ -86,6 +86,12 @@ namespace Empiria.Workflow.Execution {
     }
 
 
+    internal void ProcessEvent(WorkflowStepEvent @event) {
+      throw new NotImplementedException(
+        $"Engine.ProcessEvent. {@event.Step.UID} {@event.Type} {@event.WorkItem}");
+    }
+
+
     internal void RemoveStep(WorkflowStep workflowStep) {
       Assertion.Require(workflowStep, nameof(workflowStep));
 

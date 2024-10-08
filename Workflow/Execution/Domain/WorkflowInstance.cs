@@ -241,6 +241,15 @@ namespace Empiria.Workflow.Execution {
     }
 
 
+    internal void OnEvent(WorkflowStepEvent @event) {
+      Assertion.Require(@event, nameof(@event));
+
+      var engine = GetEngine();
+
+      engine.ProcessEvent(@event);
+    }
+
+
     protected override void OnSave() {
       if (base.IsDirty) {
         WorkflowExecutionData.Write(this, this.ExtensionData.ToString());
