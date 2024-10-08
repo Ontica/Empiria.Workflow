@@ -1,5 +1,9 @@
 ﻿# Empiria Workflow Management System
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a9263b36a98b4d22a1f152f1f886f66c)](https://app.codacy.com/gh/Ontica/Empiria.Workflow/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+&nbsp; &nbsp; 
+[![Maintainability](https://api.codeclimate.com/v1/badges/26f9ff49b2162ba62557/maintainability)](https://codeclimate.com/github/Ontica/Empiria.Workflow/maintainability)
+
 This repository contains the system's domain components, application services (uses cases),
 and a web API interface used to interact with our workflow management system.
 

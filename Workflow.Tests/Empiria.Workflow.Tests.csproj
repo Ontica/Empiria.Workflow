@@ -78,20 +78,16 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' != 'Multisolutions' ">
-    <PackageReference Include="Empiria.Workflow" Version="4.0.0" />
     <PackageReference Include="Empiria.Tests" Version="1.0.0" />
-    <PackageReference Include="Empiria.OnePoint.Security" Version="4.0.0" />
-    <PackageReference Include="Empiria.Data.Oracle" Version="7.0.0" />
-    <PackageReference Include="Empiria.Budgeting.Processes" Version="4.0.0" />
+    <PackageReference Include="Empiria.Workflow" Version="4.0.0" />
+    <PackageReference Include="Empiria.Budgeting.Core" Version="4.0.0" />
     <PackageReference Include="Empiria.Payments.Core" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Multisolutions' ">
-    <ProjectReference Include="..\Workflow\Empiria.Workflow.csproj" />
     <ProjectReference Include="..\..\extensions\Tests\Empiria.Tests.csproj" />
-    <ProjectReference Include="..\..\onepoint\Security\Empiria.OnePoint.Security.csproj" />
-    <ProjectReference Include="..\..\extensions\Data.Oracle\Empiria.Data.Oracle.csproj" />
-    <ProjectReference Include="..\..\financial.budgeting\Processes\Empiria.Budgeting.Processes.csproj" />
-    <ProjectReference Include="..\..\financial.payments\Core\Empiria.Payments.Core.csproj" />
+    <ProjectReference Include="..\Workflow\Empiria.Workflow.csproj" />
+    <ProjectReference Include="..\..\financial.management\Budgeting\Core\Empiria.Budgeting.Core.csproj" />
+    <ProjectReference Include="..\..\financial.management\Payments\Core\Empiria.Payments.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="empiria.config.json">
@@ -100,5 +96,5 @@
     <None Update="empiria.environment.vars.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>    
+  </ItemGroup>
 </Project>
