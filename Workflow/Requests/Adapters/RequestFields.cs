@@ -36,9 +36,9 @@ namespace Empiria.Workflow.Requests.Adapters {
     } = string.Empty;
 
 
-    public FixedList<FieldValue> RequestTypeFields {
+    public FixedList<FormerFieldValue> RequestTypeFields {
       get; set;
-    } = new FixedList<FieldValue>();
+    } = new FixedList<FormerFieldValue>();
 
   }  // class RequestFields
 

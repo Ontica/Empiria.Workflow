@@ -52,9 +52,9 @@ namespace Empiria.Workflow.Definition {
     }
 
 
-    public FixedList<DataField> InputData {
+    public FixedList<FormerDataField> InputData {
       get {
-        return base.ConfigurationData.GetFixedList<DataField>(WorkflowConstants.INPUT_DATA_LIST, false);
+        return base.ConfigurationData.GetFixedList<FormerDataField>(WorkflowConstants.INPUT_DATA_LIST, false);
       }
     }
 

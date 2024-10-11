@@ -109,7 +109,7 @@ namespace Empiria.Workflow.Requests.Adapters {
       get; internal set;
     }
 
-    public FixedList<FieldValue> Fields {
+    public FixedList<FormerFieldValue> Fields {
       get; internal set;
     }
 

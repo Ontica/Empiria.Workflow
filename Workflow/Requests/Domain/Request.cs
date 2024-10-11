@@ -178,9 +178,9 @@ namespace Empiria.Workflow.Requests {
     }
 
 
-    public virtual FixedList<FieldValue> RequestTypeFields {
+    public virtual FixedList<FormerFieldValue> RequestTypeFields {
       get {
-        return new FixedList<FieldValue>();
+        return new FixedList<FormerFieldValue>();
       }
     }
 
@@ -300,6 +300,8 @@ namespace Empiria.Workflow.Requests {
 
       this.RequestedByOrgUnit = OrganizationalUnit.Parse(fields.RequesterOrgUnitUID);
       this.ResponsibleOrgUnit = RequestDef.ResponsibleOrgUnit;
+
+      _ = fields.RequestTypeFields;
 
       base.MarkAsDirty();
     }

@@ -27,15 +27,16 @@ namespace Empiria.Workflow.Definition {
 
     #region Properties
 
-    public FixedList<DataField> InputData {
+    public FixedList<FormerDataField> InputData {
       get {
-        return base.ConfigurationData.GetFixedList<DataField>(WorkflowConstants.INPUT_DATA_LIST, false);
+        return base.ConfigurationData.GetFixedList<FormerDataField>(WorkflowConstants.INPUT_DATA_LIST, false);
       }
     }
 
-    public FixedList<DataField> OutputData {
+
+    public FixedList<FormerDataField> OutputData {
       get {
-        return base.ConfigurationData.GetFixedList<DataField>(WorkflowConstants.OUTPUT_DATA_LIST, false);
+        return base.ConfigurationData.GetFixedList<FormerDataField>(WorkflowConstants.OUTPUT_DATA_LIST, false);
       }
     }
 
