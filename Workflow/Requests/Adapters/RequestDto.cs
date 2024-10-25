@@ -132,7 +132,7 @@ namespace Empiria.Workflow.Requests.Adapters {
 
 
   /// <summary>Output DTO for Request instances for use in lists.</summary>
-  public class RequestListItemDto {
+  public class RequestDescriptorDto {
 
     public string UID {
       get; internal set;

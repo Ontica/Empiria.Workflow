@@ -39,8 +39,8 @@ namespace Empiria.Workflow.Requests.Adapters {
       };
     }
 
-    static internal FixedList<RequestListItemDto> MapToListItems(FixedList<Request> requests) {
-      return requests.Select(x => MapToListItem(x)).ToFixedList();
+    static internal FixedList<RequestDescriptorDto> MapToDescriptor(FixedList<Request> requests) {
+      return requests.Select(x => MapToDescriptor(x)).ToFixedList();
     }
 
     #region Helpers
@@ -81,8 +81,8 @@ namespace Empiria.Workflow.Requests.Adapters {
     }
 
 
-    static private RequestListItemDto MapToListItem(Request request) {
-      return new RequestListItemDto {
+    static private RequestDescriptorDto MapToDescriptor(Request request) {
+      return new RequestDescriptorDto {
         UID = request.UID,
         RequestNo = request.RequestNo,
         InternalControlNo = request.InternalControlNo,

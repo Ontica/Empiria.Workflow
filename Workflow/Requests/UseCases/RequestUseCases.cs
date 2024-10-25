@@ -108,7 +108,7 @@ namespace Empiria.Workflow.Requests.UseCases {
     }
 
 
-    public FixedList<RequestListItemDto> SearchRequests(RequestsQuery query) {
+    public FixedList<RequestDescriptorDto> SearchRequests(RequestsQuery query) {
       Assertion.Require(query, nameof(query));
 
       query.EnsureIsValid();
@@ -118,7 +118,7 @@ namespace Empiria.Workflow.Requests.UseCases {
 
       FixedList<Request> requests = Request.GetList(filter, sort, 200);
 
-      return RequestMapper.MapToListItems(requests);
+      return RequestMapper.MapToDescriptor(requests);
     }
 
 
