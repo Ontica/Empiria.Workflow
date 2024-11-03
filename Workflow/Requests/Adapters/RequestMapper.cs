@@ -9,10 +9,11 @@
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
 
 using Empiria.StateEnums;
-using Empiria.Storage;
+
+using Empiria.Documents.Services;
+using Empiria.History.Services;
 
 using Empiria.Workflow.Definition.Adapters;
-
 using Empiria.Workflow.Execution.Adapters;
 
 namespace Empiria.Workflow.Requests.Adapters {
@@ -30,11 +31,11 @@ namespace Empiria.Workflow.Requests.Adapters {
         Request = MapRequest(request),
         WorkflowInstances = WorkflowInstanceMapper.Map(request.GetWorkflowInstances()),
         Steps = WorkflowStepMapper.Map(request.GetSteps()),
-        Documents = MapDocuments(request),
-        History = MapHistory(request),
+        Documents = DocumentServices.GetEntityDocuments(request),
+        History = HistoryServices.GetEntityHistory(request),
+        Actions = MapActions(request),
 
         // ToDo: To be removed
-
         Tasks = WorkflowStepMapper.Map(request.GetSteps()),
       };
     }
@@ -45,15 +46,11 @@ namespace Empiria.Workflow.Requests.Adapters {
 
     #region Helpers
 
-    static private FixedList<FileDto> MapDocuments(Request request) {
-      return new FixedList<FileDto>();
+    static private BaseActions MapActions(Request request) {
+      return new BaseActions {
+        CanEditDocuments = true
+      };
     }
-
-
-    static private FixedList<WorkflowHistoryItemDto> MapHistory(Request request) {
-      return new FixedList<WorkflowHistoryItemDto>();
-    }
-
 
     static private RequestDto MapRequest(Request request) {
       return new RequestDto {

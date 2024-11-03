@@ -11,7 +11,9 @@
 using System;
 
 using Empiria.DataObjects;
-using Empiria.Storage;
+
+using Empiria.Documents.Services.Adapters;
+using Empiria.History.Services.Adapters;
 
 using Empiria.Workflow.Definition.Adapters;
 using Empiria.Workflow.Execution.Adapters;
@@ -33,11 +35,16 @@ namespace Empiria.Workflow.Requests.Adapters {
       get; internal set;
     }
 
-    public FixedList<FileDto> Documents {
+    public FixedList<DocumentDto> Documents {
       get; internal set;
     }
 
-    public FixedList<WorkflowHistoryItemDto> History {
+
+    public FixedList<HistoryDto> History {
+      get; internal set;
+    }
+
+    public BaseActions Actions {
       get; internal set;
     }
 
