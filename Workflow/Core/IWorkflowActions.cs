@@ -43,7 +43,8 @@ namespace Empiria.Workflow {
         CanInsertWorkItems = true,
         CanStart = actions.CanStart(),
         CanSuspend = actions.CanSuspend(),
-        CanUpdate = actions.CanUpdate()
+        CanUpdate = actions.CanUpdate(),
+        CanEditDocuments = actions.CanUpdate()
       };
     }
 

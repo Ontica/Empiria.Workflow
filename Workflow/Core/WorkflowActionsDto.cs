@@ -29,6 +29,10 @@ namespace Empiria.Workflow {
       get; internal set;
     }
 
+    public bool CanEditDocuments {
+      get; internal set;
+    }
+
     public bool CanInsertWorkItems {
       get; internal set;
     }
