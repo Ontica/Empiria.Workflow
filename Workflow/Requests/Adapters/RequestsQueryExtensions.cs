@@ -94,6 +94,10 @@ namespace Empiria.Workflow.Requests.Adapters {
 
       var list = RequestDef.GetList(query.RequestsList);
 
+      if (list.Count == 0) {
+        return string.Empty;
+      }
+
       string filter = string.Empty;
 
       foreach (RequestDef requestDef in list) {
