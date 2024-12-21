@@ -46,7 +46,7 @@ namespace Empiria.Workflow.Requests.WebApi {
 
       DocumentFields fields = GetFormDataFromHttpRequest<DocumentFields>("document");
 
-      InputFile documentFile = GetInputFileFromHttpRequest(fields.DocumentProductUID);
+      InputFile documentFile = GetInputFileFromHttpRequest();
 
       var document = DocumentServices.StoreDocument(documentFile, request, fields);
 
