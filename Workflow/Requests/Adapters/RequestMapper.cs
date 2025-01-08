@@ -52,6 +52,7 @@ namespace Empiria.Workflow.Requests.Adapters {
       };
     }
 
+
     static private RequestDto MapRequest(Request request) {
       return new RequestDto {
         UID = request.UID,
