@@ -12,7 +12,7 @@ using System;
 
 using Empiria.DataObjects;
 
-using Empiria.Documents.Services.Adapters;
+using Empiria.Documents;
 using Empiria.History.Services.Adapters;
 
 using Empiria.Workflow.Definition.Adapters;

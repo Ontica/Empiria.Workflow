@@ -15,7 +15,6 @@ using Empiria.WebApi;
 using Empiria.Storage;
 
 using Empiria.Documents;
-using Empiria.Documents.Services;
 
 namespace Empiria.Workflow.Requests.WebApi {
 
@@ -30,7 +29,7 @@ namespace Empiria.Workflow.Requests.WebApi {
                                              [FromUri] string documentUID) {
 
       var request = Requests.Request.Parse(requestUID);
-      var document = Document.Parse(documentUID);
+      var document = DocumentServices.GetDocument(documentUID);
 
       DocumentServices.RemoveDocument(request, document);
 
@@ -62,7 +61,7 @@ namespace Empiria.Workflow.Requests.WebApi {
       RequireBody(fields);
 
       var request = Requests.Request.Parse(requestUID);
-      var document = Document.Parse(documentUID);
+      var document = DocumentServices.GetDocument(documentUID);
 
       var documentDto = DocumentServices.UpdateDocument(request, document, fields);
 

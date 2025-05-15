@@ -10,7 +10,7 @@
 
 using Empiria.StateEnums;
 
-using Empiria.Documents.Services;
+using Empiria.Documents;
 using Empiria.History.Services;
 
 using Empiria.Workflow.Definition.Adapters;
@@ -31,7 +31,7 @@ namespace Empiria.Workflow.Requests.Adapters {
         Request = MapRequest(request),
         WorkflowInstances = WorkflowInstanceMapper.Map(request.GetWorkflowInstances()),
         Steps = WorkflowStepMapper.Map(request.GetSteps()),
-        Documents = DocumentServices.GetEntityDocuments(request),
+        Documents = DocumentServices.GetAllEntityDocuments(request),
         History = HistoryServices.GetEntityHistory(request),
         Actions = MapActions(request),
 
