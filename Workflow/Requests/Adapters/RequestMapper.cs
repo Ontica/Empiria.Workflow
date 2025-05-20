@@ -11,7 +11,7 @@
 using Empiria.StateEnums;
 
 using Empiria.Documents;
-using Empiria.History.Services;
+using Empiria.History;
 
 using Empiria.Workflow.Definition.Adapters;
 using Empiria.Workflow.Execution.Adapters;
