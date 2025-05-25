@@ -23,12 +23,12 @@ namespace Empiria.Workflow.Requests.WebApi {
 
     [HttpGet]
     [Route("v4/requests/catalogues/organizational-units")]
-    public CollectionModel GetOrganizationalUnits([FromUri] string requestsList) {
+    public CollectionModel GetOrganizationalUnitsPlayingRole([FromUri] string requestsList) {
 
       using (var usecases = CataloguesUseCases.UseCaseInteractor()) {
-        FixedList<NamedEntityDto> list = usecases.OrganizationalUnits(requestsList);
+        FixedList<NamedEntityDto> orgUnits = usecases.GetOrganizationalUnitsPlayingRole(requestsList);
 
-        return new CollectionModel(base.Request, list);
+        return new CollectionModel(base.Request, orgUnits);
       }
     }
 

@@ -7,6 +7,7 @@
 *  Summary  : Use cases that returns catalogues information for requests.                                    *
 *                                                                                                            *
 ************************* Copyright(c) La Vía Óntica SC, Ontica LLC and contributors. All rights reserved. **/
+
 using System;
 using System.Collections.Generic;
 
@@ -33,14 +34,15 @@ namespace Empiria.Workflow.Requests.UseCases {
 
     #region Use cases
 
-    public FixedList<NamedEntityDto> OrganizationalUnits(string requestsList) {
-      Assertion.Require(requestsList, nameof(requestsList));
+    public FixedList<NamedEntityDto> GetOrganizationalUnitsPlayingRole(string role) {
+      Assertion.Require(role, nameof(role));
 
-      FixedList<OrganizationalUnit> list = Party.GetList<OrganizationalUnit>(DateTime.Today);
+      FixedList<OrganizationalUnit> list = Party.GetList<OrganizationalUnit>(DateTime.Today)
+                                                .FindAll(x => x.PlaysRole(role));
 
       list.Sort((x, y) => x.Code.CompareTo(y.Code));
 
-      list = base.RestrictUserDataAccessTo(list);
+      // list = base.RestrictUserDataAccessTo(list);
 
       return list.Select(x => new NamedEntityDto(x.UID, x.FullName))
                  .ToFixedList();
@@ -48,14 +50,7 @@ namespace Empiria.Workflow.Requests.UseCases {
 
 
     public FixedList<NamedEntityDto> ResponsibleList(string workitemTypeUID) {
-      var list = new List<NamedEntityDto> {
-        new NamedEntityDto(Party.Parse(1001).UID, Party.Parse(1001).Name),
-        new NamedEntityDto(Party.Parse(1002).UID, Party.Parse(1002).Name),
-        new NamedEntityDto(Party.Parse(1003).UID, Party.Parse(1003).Name),
-        new NamedEntityDto(Party.Parse(1004).UID, Party.Parse(1004).Name),
-        new NamedEntityDto(Party.Parse(1005).UID, Party.Parse(1005).Name),
-      };
-      return list.ToFixedList().Sort((x, y) => x.Name.CompareTo(y.Name)).Reverse();
+      return new FixedList<NamedEntityDto>();
     }
 
 
