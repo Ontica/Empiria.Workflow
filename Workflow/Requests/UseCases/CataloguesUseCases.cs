@@ -42,10 +42,31 @@ namespace Empiria.Workflow.Requests.UseCases {
 
       list.Sort((x, y) => x.Code.CompareTo(y.Code));
 
-      // list = base.RestrictUserDataAccessTo(list);
+      if (ExecutionServer.CurrentPrincipal.IsInRole("budget-manager") ||
+          ExecutionServer.CurrentPrincipal.IsInRole("budget-authorizer") ||
+          ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-authorizer") ||
+          ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-manager")) {
 
-      return list.Select(x => new NamedEntityDto(x.UID, x.FullName))
-                 .ToFixedList();
+        return list.Select(x => new NamedEntityDto(x.UID, x.FullName))
+                   .ToFixedList();
+
+      }
+
+      var party = Party.ParseWithContact(ExecutionServer.CurrentContact);
+
+      if (role == "budgeting" && ExecutionServer.CurrentPrincipal.IsInRole("acquisition-manager")) {
+        return list.FindAll(x => x.Id == ExecutionServer.CurrentContact.Organization.Id)
+                   .Select(x => new NamedEntityDto(x.UID, x.FullName))
+                   .ToFixedList();
+      }
+      if (role == "cash-flow" && (ExecutionServer.CurrentPrincipal.IsInRole("financial-project-manager") ||
+                                  ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-projector"))) {
+        return list.FindAll(x => x.Id == ExecutionServer.CurrentContact.Organization.Id)
+                   .Select(x => new NamedEntityDto(x.UID, x.FullName))
+                   .ToFixedList();
+      }
+
+      return new FixedList<NamedEntityDto>();
     }
 
 
