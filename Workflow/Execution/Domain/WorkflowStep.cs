@@ -347,7 +347,7 @@ namespace Empiria.Workflow.Execution {
 
       fields.EnsureValid();
 
-      Description = PatchCleanField(fields.Description, this.Name);
+      Description = Patcher.PatchClean(fields.Description, this.Name);
       DueTime = fields.DueTime;
       Priority = fields.Priority;
       RequestedByOrgUnit = fields.GetRequestedByOrgUnit();
