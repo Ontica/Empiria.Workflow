@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 
+using Empiria.HumanResources;
 using Empiria.Parties;
 using Empiria.Services;
 using Empiria.StateEnums;
@@ -37,36 +38,12 @@ namespace Empiria.Workflow.Requests.UseCases {
     public FixedList<NamedEntityDto> GetOrganizationalUnitsPlayingRole(string role) {
       Assertion.Require(role, nameof(role));
 
-      FixedList<OrganizationalUnit> list = Party.GetList<OrganizationalUnit>(DateTime.Today)
-                                                .FindAll(x => x.PlaysRole(role));
-
-      list.Sort((x, y) => x.Code.CompareTo(y.Code));
-
-      if (ExecutionServer.CurrentPrincipal.IsInRole("budget-manager") ||
-          ExecutionServer.CurrentPrincipal.IsInRole("budget-authorizer") ||
-          ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-authorizer") ||
-          ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-manager")) {
-
-        return list.Select(x => new NamedEntityDto(x.UID, x.FullName))
-                   .ToFixedList();
-
-      }
-
       var party = Party.ParseWithContact(ExecutionServer.CurrentContact);
 
-      if (role == "budgeting" && ExecutionServer.CurrentPrincipal.IsInRole("acquisition-manager")) {
-        return list.FindAll(x => x.Id == ExecutionServer.CurrentContact.Organization.Id)
-                   .Select(x => new NamedEntityDto(x.UID, x.FullName))
-                   .ToFixedList();
-      }
-      if (role == "cash-flow" && (ExecutionServer.CurrentPrincipal.IsInRole("financial-project-manager") ||
-                                  ExecutionServer.CurrentPrincipal.IsInRole("cash-flow-projector"))) {
-        return list.FindAll(x => x.Id == ExecutionServer.CurrentContact.Organization.Id)
-                   .Select(x => new NamedEntityDto(x.UID, x.FullName))
-                   .ToFixedList();
-      }
+      FixedList<OrganizationalUnit> orgUnits = Accountability.GetCommissionersFor<OrganizationalUnit>(party, role, role);
 
-      return new FixedList<NamedEntityDto>();
+      return orgUnits.Select(x => new NamedEntityDto(x.UID, x.FullName))
+                     .ToFixedList();
     }
 
 
